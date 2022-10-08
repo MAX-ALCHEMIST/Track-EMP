@@ -1,10 +1,39 @@
 import React, { useState } from 'react'
+import { createClient } from '@supabase/supabase-js'
 
 function Register() {
     
     const [lid,setlid]=useState("");
     const [lpass,setlpass]=useState("");
     const [clpass,setclpass]=useState("");
+
+    const supabase = createClient(process.env.REACT_APP_URL, process.env.REACT_APP_API)
+
+    async function post(id, pass, cpass) {
+      console.log(id, pass)
+
+      if (pass !== cpass) {
+          alert("Enter confirm password again correctely ")
+          setlpass('');
+          setclpass('');
+      }
+      else if (pass === cpass) {
+          supabase.auth.signUp({
+              email: id,
+              password: pass,
+          })
+          upload()
+          setlid('');
+          setlpass('');
+          setclpass('');
+      }
+  }
+  async function upload() {
+    await supabase
+        .from('users')
+        .insert([{ uEmailId : lid , role : "Emloyee" }])
+}
+
 
   return (
     <div className='h-screen w-screen' style={{ background: "#191414" }}>
@@ -25,13 +54,13 @@ function Register() {
 
 
 
-              <button className=" text-blue-900 font-semibold w-full mt-4 rounded-lg h-10 text-xl text-center bg-lime-600">Login</button>
+              <button className=" text-blue-900 font-semibold w-full mt-4 rounded-lg h-10 text-xl text-center bg-lime-600" onClick={() => (post(lid, lpass, clpass))}>SignUp</button>
             <div className='flex justify-center mt-5 '>
               {/* <img src={google} alt="google" className='w-10 rounded-full mx-2'></img> */}
               {/* <img src={fb} alt="fb" className='w-10 rounded-full  mx-2'></img> */}
             </div>
 
-            <div className='flex mb-12 mt-3 '>
+            <div className='flex mt-3 '>
               {/* <p className="text-white">Don't have an account?</p><Link to='/signup' className='ml-3 blur-1  text-yellow-500 font-bold'> Sign up </Link> */}
             </div>
           </div>
