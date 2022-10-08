@@ -31,7 +31,7 @@ function Register() {
   async function upload() {
     await supabase
         .from('users')
-        .insert([{ uEmailId : lid , role : "Emloyee" }])
+        .insert([{ uEmailId : lid , role : "Admin" }])
 }
 
 

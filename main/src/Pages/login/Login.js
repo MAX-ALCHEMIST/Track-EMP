@@ -10,7 +10,6 @@ function Login() {
   const supabase = createClient(process.env.REACT_APP_URL, process.env.REACT_APP_API)
 
   async function post(lid, lpass) {
-    var rem
     console.log("ultra");
     
     const a=await supabase.auth.signInWithPassword({
