@@ -46,7 +46,7 @@ function Login() {
               <p className='text-yellow-400 absolute right-0'>Forgot Password</p>
             </div>
             <div className='flex mb-12 mt-3 '>
-            <button className=" text-blue-900 font-semibold w-full mt-4 rounded-lg h-10 text-xl text-center bg-lime-600" onClick={() => (post(lid, lpass))}>SignUp</button> 
+            <button className=" text-blue-900 font-semibold w-full mt-4 rounded-lg h-10 text-xl text-center bg-lime-600" onClick={() => (post(lid, lpass))}>Login</button> 
             {/* give link and check tof if tof is true the it will goes forward otherwise it will be return */}
             
             </div>
